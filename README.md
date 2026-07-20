@@ -7,6 +7,10 @@ und tritt mit hinterlegtem Anzeigenamen bei.
 Schwesterprojekt zu `backup_courses.py` – gleicher Aufbau (Retry-Decorator,
 `load_config`/`create_webdriver`, Logging).
 
+**Wichtig:
+In ByCS lassen sich persönliche Räume anlegen. Diese sind tatsächlich dauerhaft und werden nicht gelöscht!**
+https://www.bycs.de/hilfe-und-tutorials/videokonferenzsystem/einen-persoenlichen-raum-erstellen-und-verwalten/index.html
+
 ## Voraussetzungen
 
 - Python 3.10+
