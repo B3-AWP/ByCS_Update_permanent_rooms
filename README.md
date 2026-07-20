@@ -1,6 +1,3 @@
-# ByCS_UpdatePermanentRooms
-Dauerhafte Räume sollen automatisch aktualisiert werden, damit sie nicht gelöscht werden.
-
 # ByCS ViKo – Moderator-Beitritt
 
 Automatisierter Beitritt zu ByCS-ViKo-Räumen (Visavid) als Moderator*in via Selenium.
