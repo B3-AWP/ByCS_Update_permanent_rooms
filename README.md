@@ -1,31 +1,25 @@
 # ByCS ViKo – Moderator-Beitritt
-
-Automatisierter Beitritt zu ByCS-ViKo-Räumen (Visavid) als Moderator*in via Selenium.
+Automatisierter Beitritt zu ByCS-ViKo-Räumen (Visavid) mit Moderationsrechten via Selenium.
 Loggt sich per ByCS-SSO ein, betritt alle Dauerräume nacheinander (je eigener Tab)
 und tritt mit hinterlegtem Anzeigenamen bei.
-
 Schwesterprojekt zu `backup_courses.py` – gleicher Aufbau (Retry-Decorator,
 `load_config`/`create_webdriver`, Logging).
 
-**Wichtig:
-In ByCS lassen sich persönliche Räume anlegen. Diese sind tatsächlich dauerhaft und werden nicht gelöscht!**
+**Wichtig:**
+
+**In ByCS lassen sich persönliche Räume anlegen. Diese sind tatsächlich dauerhaft und werden nicht gelöscht!**
 https://www.bycs.de/hilfe-und-tutorials/videokonferenzsystem/einen-persoenlichen-raum-erstellen-und-verwalten/index.html
 
 ## Voraussetzungen
-
 - Python 3.10+
 - Google Chrome + passender ChromeDriver
-
 ## Installation
-
 ```
 pip install selenium python-dotenv
 ```
 
 ## Konfiguration
-
 Datei: `config/.env.Viko`
-
 | Variable            | Pflicht | Default | Beschreibung                                                        |
 | ------------------- | ------- | ------- | ------------------------------------------------------------------- |
 | `MEBIS_USERNAME`    | Ja      | –       | ByCS-Benutzername                                                   |
@@ -38,34 +32,25 @@ Datei: `config/.env.Viko`
 | `MODE_HEADLESS`     | Nein    | `False` | `True` = ohne Fenster (Hintergrund-Bot)                            |
 | `USE_FAKE_MEDIA`    | Nein    | `True`  | Fake-Kamera/-Mikro (nötig bei mehreren parallelen Räumen)         |
 | `KEEP_OPEN`         | Nein    | `True`  | Alle Tabs offen halten bis Enter                                   |
-
 ## Nutzung
-
 ```
 python scripts/viko_enter.py
 ```
-
 Ablauf:
-
 1. Login über die OIDC-Auth-URL (SSO, gleiche Session wie die Lernplattform)
 2. Tab „Dauerhafte Räume“ öffnen, alle Räume ermitteln
-3. Pro Raum in eigenem Tab: `Raum betreten` → ggf. `Als Moderator betreten` →
-   Name eintragen, Checkboxen setzen → `Raum als Moderator betreten`
+3. Pro Raum in eigenem Tab: `Raum betreten` → ggf. `Als Moderation betreten` →
+   Name eintragen, Checkboxen setzen → `Raum als Moderation betreten`
 4. OK/FEHLER-Zusammenfassung; Tabs bleiben offen (`KEEP_OPEN=True`)
-
 Ein fehlgeschlagener Raum blockiert die übrigen nicht.
 
 ## Selektor-Status
-
 Verifiziert am echten DOM: Login-Formular, Raumliste + Tab, `/v/`-Beitrittsseite
 (Namensfeld, beide Checkboxen, Submit-Button `test-login-button`).
-
 Text-basiert (tolerant, wird übersprungen falls nicht vorhanden): der
-Zwischendialog `Als Moderator betreten`.
-
+Zwischendialog `Als Moderation betreten`.
 Hinweis: Der finale Button heißt „Raum als Moderator **betreten**“ (nicht
 „beitreten“) – die Selektoren sind entsprechend gesetzt.
 
 ## Sicherheit
-
 `.env.Viko` enthält Login-Daten und darf **nicht** ins Repo. Siehe `.gitignore`.
