@@ -1,1 +1,16 @@
 .env.Viko
+TIGNORE
+# Credentials / lokale Konfiguration
+.env
+.env.Viko
+ 
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+ 
+# Backups / Downloads
+backups/
+*.mbz
+ 
